@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferrari — The Art of Performance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============ LOADER ============ -->
+    <div id="loader">
+      <div class="loader-mark-wrap">
+        <div class="loader-glow"></div>
+        <div class="loader-ring">
+          <svg viewBox="0 0 120 120">
+            <circle class="ring-track" cx="60" cy="60" r="55"></circle>
+            <circle
+              class="ring-fill"
+              id="loader-ring-fill"
+              cx="60"
+              cy="60"
+              r="55"
+            ></circle>
+          </svg>
+        </div>
+        <div class="loader-mark">F</div>
+      </div>
+      <div class="loader-track">
+        <div class="loader-fill" id="loader-fill"></div>
+      </div>
+      <div id="progress-text">0%</div>
+      <div class="loader-caption" id="loader-caption">Loading frames</div>
+    </div>
+
+    <!-- ============ AMBIENT LAYERS (behind / around the car) ============ -->
+    <div class="light-overlay" id="light-overlay"></div>
+    <div class="light-sweep" id="light-sweep"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ============ THE CAR — untouched core ============ -->
+    <div class="scroll-container">
+      <canvas id="sequence-canvas"></canvas>
+    </div>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="nav" id="nav">
+      <div class="nav-mark">Ferrari</div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" data-nav="design"
+            ><span class="nav-num">01</span> Design</a
+          >
+        </li>
+        <li>
+          <a href="#" data-nav="performance"
+            ><span class="nav-num">02</span> Performance</a
+          >
+        </li>
+        <li>
+          <a href="#" data-nav="experience"
+            ><span class="nav-num">03</span> Experience</a
+          >
+        </li>
+      </ul>
+      <button class="nav-menu">Menu</button>
+    </nav>
+
+    <!-- ============ PROGRESS UI ============ -->
+    <div class="progress-ui" aria-hidden="true">
+      <div class="progress-count">
+        <span class="progress-current">01</span>
+        <span class="progress-rule"></span>
+        <span class="progress-total">06</span>
+      </div>
+      <div class="progress-label-wrap">
+        <span class="progress-label">Design</span>
+      </div>
+    </div>
+
+    <!-- ============ SCROLL INDICATOR (hero only) ============ -->
+    <div class="scroll-cue" id="scroll-cue">
+      <span>Scroll to explore</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+
+    <!-- ============ STORY SCENES ============ -->
+    <main class="scenes">
+      <!-- HERO -->
+      <section class="scene scene--hero" data-scene="hero">
+        <div class="hero-title">
+          <h1 class="hero-title-line">Ferrari</h1>
+          <p class="hero-sub">The art of performance</p>
+        </div>
+      </section>
+
+      <!-- 01 DESIGN -->
+      <section class="scene scene--design" data-scene="design">
+        <div class="story story--left glass">
+          <span class="eyebrow">01 — Design</span>
+          <h2 class="story-heading">Sculpted<br />by speed</h2>
+          <p class="story-copy">
+            Every surface is shaped with purpose. Aerodynamic precision meets
+            unmistakable Italian design.
+          </p>
+        </div>
+        <div class="micro-detail micro-detail--a glass-chip">
+          <span class="micro-label">Aerodynamics</span>
+          <span class="micro-sub">Engineered for airflow</span>
+        </div>
+        <div class="micro-detail micro-detail--b glass-chip">
+          <span class="micro-label">Form</span>
+          <span class="micro-sub">Every line, considered</span>
+        </div>
+      </section>
+
+      <!-- 02 PERFORMANCE -->
+      <section class="scene scene--performance" data-scene="performance">
+        <div class="story story--right glass">
+          <span class="eyebrow">02 — Performance</span>
+          <h2 class="story-heading">Built for<br />pure emotion</h2>
+          <p class="story-copy">
+            Performance is not simply measured. It is experienced.
+          </p>
+          <ul class="stat-row">
+            <li>Power</li>
+            <li>Pure response</li>
+            <li>Aerodynamic control</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TYPOGRAPHIC MOMENT -->
+      <section class="scene scene--type-moment" data-scene="type-moment">
+        <div class="glass-scrim">
+          <h2 class="type-moment-heading">
+            <span>Pure</span>
+            <span>Performance</span>
+          </h2>
+        </div>
+      </section>
+
+      <!-- 03 FORM -->
+      <section class="scene scene--form" data-scene="form">
+        <div class="story story--left glass">
+          <span class="eyebrow">03 — Form</span>
+          <h2 class="story-heading">Form meets<br />function</h2>
+          <p class="story-copy">
+            Every contour exists for a reason. Every line follows the movement
+            of air.
+          </p>
+        </div>
+        <svg
+          class="silhouette-line"
+          viewBox="0 0 800 200"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M40,150 C150,60 280,40 400,45 C540,50 620,90 760,120" />
+        </svg>
+      </section>
+
+      <!-- 04 EXPERIENCE -->
+      <section class="scene scene--experience" data-scene="experience">
+        <div class="story story--right glass">
+          <span class="eyebrow">04 — Experience</span>
+          <h2 class="story-heading">Inside the<br />machine</h2>
+          <p class="story-copy">
+            A cockpit designed around the driver. Every control within reach,
+            every detail built with purpose.
+          </p>
+        </div>
+        <div class="callout callout--a glass-chip">
+          <span class="callout-dot"></span
+          ><span class="callout-text">Driver focused</span>
+        </div>
+        <div class="callout callout--b glass-chip">
+          <span class="callout-dot"></span
+          ><span class="callout-text">Precision control</span>
+        </div>
+        <div class="callout callout--c glass-chip">
+          <span class="callout-dot"></span
+          ><span class="callout-text">Digital instrumentation</span>
+        </div>
+      </section>
+
+      <!-- PRECISION / TRANSITION -->
+      <section class="scene scene--precision" data-scene="precision">
+        <div class="glass-scrim">
+          <span class="precision-word">Precision</span>
+        </div>
+      </section>
+
+      <!-- HORSE REVEAL — heritage story, told over the archive frames -->
+      <section class="scene scene--horse" data-scene="horse">
+        <div class="horse-story glass">
+          <span class="eyebrow">Heritage</span>
+          <h2 class="story-heading">The Prancing<br />Horse</h2>
+          <p class="story-copy">
+            Adopted by Enzo Ferrari in 1923 at the suggestion of a fallen
+            pilot's parents, the Cavallino Rampante has carried the marque's
+            identity into every car built since.
+          </p>
+        </div>
+        <div class="horse-note horse-note--a glass-chip">
+          <span class="horse-note-label">Since 1947</span>
+          <span>Every road car has been built in Maranello, Italy.</span>
+        </div>
+        <div class="horse-note horse-note--b glass-chip">
+          <span class="horse-note-label">By hand</span>
+          <span
+            >Engines are still assembled by a single technician, start to
+            finish.</span
+          >
+        </div>
+      </section>
+
+      <!-- FINALE -->
+      <section class="scene scene--finale" data-scene="finale">
+        <div class="glass-scrim">
+          <h2 class="finale-heading">The art<br />of performance</h2>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="scene scene--cta" data-scene="cta">
+        <div class="glass">
+          <span class="eyebrow">05 — Discover</span>
+          <h2 class="cta-heading">Experience the<br />extraordinary</h2>
+          <p class="cta-sub">Discover the world of Ferrari</p>
+          <a href="#range" class="cta-button">
+            <span class="cta-button-text">Explore</span>
+            <span class="cta-button-arrow">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ THE RANGE — model carousel ============ -->
+    <section class="section section--range" id="range">
+      <div class="section-head reveal">
+        <span class="eyebrow">06 — The Range</span>
+        <h2 class="section-heading">Four ways to<br />feel the road</h2>
+        <p class="section-copy">
+          From the everyday grand tourer to the hybrid flagship, every model
+          channels the same obsession with speed.
+        </p>
+      </div>
+
+      <div class="model-carousel reveal">
+        <div class="model-track">
+          <div class="model-slides" id="model-slides">
+            <div class="model-slide">
+              <div class="model-card glass">
+                <div class="model-card-head">
+                  <h3 class="model-name">Roma</h3>
+                  <span class="model-tag">Grand Tourer</span>
+                </div>
+                <p class="model-copy">
+                  A front-engined 2+2 built for long, effortless distances, with
+                  styling drawn from 1960s Rome.
+                </p>
+                <div class="model-specs">
+                  <div class="model-spec">
+                    <span class="model-spec-value">620 hp</span
+                    ><span class="model-spec-label">3.9L Twin-Turbo V8</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">3.4s</span
+                    ><span class="model-spec-label">0–100 km/h</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">320 km/h</span
+                    ><span class="model-spec-label">Top speed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="model-slide">
+              <div class="model-card glass">
+                <div class="model-card-head">
+                  <h3 class="model-name">296 GTB</h3>
+                  <span class="model-tag">Berlinetta</span>
+                </div>
+                <p class="model-copy">
+                  Ferrari's first V6 road car, pairing a twin-turbo hybrid
+                  engine with mid-engine balance.
+                </p>
+                <div class="model-specs">
+                  <div class="model-spec">
+                    <span class="model-spec-value">819 hp</span
+                    ><span class="model-spec-label">3.0L Hybrid V6</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">2.9s</span
+                    ><span class="model-spec-label">0–100 km/h</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">330 km/h</span
+                    ><span class="model-spec-label">Top speed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="model-slide">
+              <div class="model-card glass">
+                <div class="model-card-head">
+                  <h3 class="model-name">SF90 Stradale</h3>
+                  <span class="model-tag">Hybrid Flagship</span>
+                </div>
+                <p class="model-copy">
+                  Named for Scuderia Ferrari's 90th year, this plug-in hybrid is
+                  the most powerful road car the marque has built.
+                </p>
+                <div class="model-specs">
+                  <div class="model-spec">
+                    <span class="model-spec-value">1,000 hp</span
+                    ><span class="model-spec-label">4.0L Hybrid V8</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">2.5s</span
+                    ><span class="model-spec-label">0–100 km/h</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">340 km/h</span
+                    ><span class="model-spec-label">Top speed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="model-slide">
+              <div class="model-card glass">
+                <div class="model-card-head">
+                  <h3 class="model-name">Purosangue</h3>
+                  <span class="model-tag">Four-Seat Sports Car</span>
+                </div>
+                <p class="model-copy">
+                  Ferrari's first four-door, powered by a naturally-aspirated
+                  V12 — no turbos, no downsizing.
+                </p>
+                <div class="model-specs">
+                  <div class="model-spec">
+                    <span class="model-spec-value">725 hp</span
+                    ><span class="model-spec-label"
+                      >6.5L Naturally Aspirated V12</span
+                    >
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">3.3s</span
+                    ><span class="model-spec-label">0–100 km/h</span>
+                  </div>
+                  <div class="model-spec">
+                    <span class="model-spec-value">310 km/h</span
+                    ><span class="model-spec-label">Top speed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button
+            class="carousel-arrow"
+            id="carousel-prev"
+            aria-label="Previous model"
+          >
+            ←
+          </button>
+          <div class="carousel-dots" id="carousel-dots"></div>
+          <button
+            class="carousel-arrow"
+            id="carousel-next"
+            aria-label="Next model"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HERITAGE NUMBERS ============ -->
+    <section class="section section--heritage">
+      <div class="section-head reveal">
+        <span class="eyebrow">07 — Since 1947</span>
+        <h2 class="section-heading">Built on legacy</h2>
+        <p class="section-copy">
+          A single factory in Maranello, one emblem, and a philosophy that
+          hasn't changed in eight decades.
+        </p>
+      </div>
+      <div class="stat-strip reveal">
+        <div class="stat-strip-item">
+          <div class="stat-strip-value">1947</div>
+          <div class="stat-strip-label">Company founded</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="stat-strip-value">1923</div>
+          <div class="stat-strip-label">Prancing Horse adopted</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="stat-strip-value">Maranello</div>
+          <div class="stat-strip-label">Home of every car</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="stat-strip-value">By hand</div>
+          <div class="stat-strip-label">Every engine, one technician</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section section--final-cta">
+      <div class="reveal">
+        <span class="eyebrow">08 — Discover</span>
+        <h2 class="section-heading">Find your Ferrari</h2>
+        <p class="section-copy">
+          Configure a model or book time behind the wheel at your nearest
+          dealer.
+        </p>
+        <div class="final-cta-actions">
+          <a
+            href="https://www.ferrari.com"
+            class="cta-button"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="cta-button-text">Configure yours</span>
+            <span class="cta-button-arrow">→</span>
+          </a>
+          <a
+            href="https://www.ferrari.com/en-EN/dealer-locator"
+            class="btn-ghost"
+            target="_blank"
+            rel="noopener"
+            >Find a dealer</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
